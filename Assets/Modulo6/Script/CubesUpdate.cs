@@ -1,0 +1,30 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class CubesUpdate : MonoBehaviour
+{
+    public GameObject PrefabCubo;
+    public List<GameObject> listaDeCubos;
+    public int numCubos = 0;
+
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        listaDeCubos = new List<GameObject>();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        numCubos++;
+        GameObject tempGameObject = Instantiate<GameObject>(PrefabCubo);
+        tempGameObject.name = "CuboNumero" + numCubos;
+        Color c = new Color(Random.value, Random.value, Random.value);
+        tempGameObject.GetComponent<MeshRenderer>().material.color = c;
+        tempGameObject.transform.position = Random.insideUnitSphere;
+
+        listaDeCubos.Add(tempGameObject);
+    }
+}
